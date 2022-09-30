@@ -26,6 +26,7 @@
         </EditText>
         <EditText
             android:layout_width="match_parent"
+            android:id="@+id/nhapmon"
             android:layout_height="40dp"
             android:hint="Nhập tên món ăn"
 
@@ -36,6 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:hint="Nhâp giá tiền"
+            android:id="@+id/nhapgia"
             >
 
         </EditText>
@@ -53,11 +55,11 @@
 
     <Button
 
+        android:id="@+id/them"
         android:layout_width="150dp"
         android:layout_height="50dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="120dp"
-        android:id="@+id/them"
         android:text="Thêm"
 
         >

@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -18,7 +19,8 @@ public class MainActivity extends AppCompatActivity {
     ListView lvMonAn ;
     ArrayList<monAn> arrayMonAn;
     monanadapter adapter;
-    Button xoamon;
+    Button xoamon,themmon;
+    EditText nhapmon,nhapgia;
     int vitri = -1,vitrixoa=-1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +54,33 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "Đã xóa món "+arrayMonAn.get(vitrixoa).getTen(), Toast.LENGTH_SHORT).show();
                     arrayMonAn.remove(vitrixoa);
                     adapter.notifyDataSetChanged();
+                    vitrixoa=-1;
+                }
+
+            }
+        });
+        //them mon an
+        nhapmon =(EditText) findViewById(R.id.nhapmon);
+        nhapgia =(EditText) findViewById(R.id.nhapgia);
+        themmon = (Button) findViewById(R.id.them);
+        themmon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String themitem;
+                if(nhapmon.getText().toString().equals("")){
+                    Toast.makeText(MainActivity.this, "Nhập món trước khi thêm", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    for (int i = 0; i < arrayMonAn.size()-1; i++) {
+                        if(nhapmon.getText().toString().equals(arrayMonAn.get(i).getTen())){
+                            Toast.makeText(MainActivity.this, "Món ăn này đã có không thể thêm", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                    }
+                    themitem = nhapmon.getText().toString();
+                    arrayMonAn.add(themitem);
+                    adapter.notifyDataSetChanged();
+                    nhapmon.setText("");
                     vitrixoa=-1;
                 }
 
